@@ -174,7 +174,6 @@ curl -L -X DELETE 'http://localhost:9200/<index-name>'
 ### Elasticsearch
 Image: [bitnami/elasticsearch](https://hub.docker.com/r/bitnami/elasticsearch)
 
-Default values:
 ```
 ELASTICSEARCH_HTTP_PORT_NUMBER: 9200
 ELASTICSEARCH_USERNAME: elastic
@@ -185,7 +184,6 @@ ELASTICSEARCH_PASSWORD: bitnami
 ### Logstash
 Image: [bitnami/logstash](https://hub.docker.com/r/bitnami/logstash)
 
-Default values:
 ```
 LOGSTASH_GELF_PORT_NUMBER: 12201
 LOGSTASH_HTTP_PORT_NUMBER: 8080
@@ -196,7 +194,6 @@ LOGSTASH_API_PORT_NUMBER: 9600
 ### Kibana
 Image: [bitnami/kibana](https://hub.docker.com/r/bitnami/kibana)
 
-Default values:
 ```
 KIBANA_PORT_NUMBER: 5601
 APACHE_KIBANA_USERNAME: kibana
