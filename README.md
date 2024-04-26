@@ -133,8 +133,8 @@ curl -L -X PUT 'http://localhost:9200/<index-name>' \
 ```
 
 ### Search ([doc](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html))
-```shel
-curl -L 'http://localhost:9200/product-index/_search' \
+```shell
+curl -L 'http://localhost:9200/<index-name>/_search' \
 -H 'Content-Type: application/json' \
 -d '{
   "query": {
