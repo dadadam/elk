@@ -1,0 +1,93 @@
+{
+  "settings": {
+    "analysis": {
+      "filter": {
+        "russian_stop": {
+          "type": "stop",
+          "stopwords": "_russian_"
+        },
+        "russian_stemmer": {
+          "type": "stemmer",
+          "language": "russian"
+        },
+        "ru_hunspell": {
+          "type": "hunspell",
+          "locale": "ru_RU"
+        },
+        "kk_hanspell": {
+          "type": "hunspell",
+          "locale": "kk_KZ"
+        },
+        "custom_phonetic_cyrillic": {
+          "type": "phonetic",
+          "encoder": "beider_morse",
+          "rule_type": "approx",
+          "name_type": "generic",
+          "languageset": ["cyrillic"]
+        },
+        "custom_phonetic_english": {
+          "type": "phonetic",
+          "encoder": "beider_morse",
+          "rule_type": "approx",
+          "name_type": "generic",
+          "languageset": ["english"]
+        }
+      },
+      "char_filter": {
+        "custom_ru_char_filter": {
+          "type": "mapping",
+          "mappings": ["Ё => Е", "ё => е", "Й => И", "й => и"]
+        },
+        "custom_kz_char_filter": {
+          "type": "mapping",
+          "mappings": [
+            "ә => a",
+            "ғ => г",
+            "қ => к",
+            "ң => н",
+            "ө => о",
+            "ұ => у",
+            "ү => у",
+            "h => х",
+            "і => и",
+            "Ә => А",
+            "Ғ => Г",
+            "Қ => К",
+            "Ң => Н",
+            "Ө => О",
+            "Ұ => У",
+            "Ү => У",
+            "І => и"
+          ]
+        }
+      },
+      "analyzer": {
+        "custom_russian_analyzer": {
+          "tokenizer": "edge_ngram",
+          "filter": [
+            "lowercase",
+            "custom_phonetic_cyrillic",
+            "custom_phonetic_english",
+            "russian_stop",
+            "russian_stemmer",
+            "ru_hunspell",
+            "kk_hanspell"
+          ],
+          "char_filter": ["custom_ru_char_filter", "custom_kz_char_filter"]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "title": {
+        "type": "text",
+        "store": true,
+        "analyzer": "custom_russian_analyzer"
+      },
+      "rank": {
+        "type": "float"
+      }
+    }
+  }
+}

@@ -1,0 +1,44 @@
+name: elk
+
+services:
+  es:
+    image: bitnami/elasticsearch:${ELK_VERSION}
+    volumes:
+      - "es_data:/bitnami/elasticsearch/data"
+      - "./hunspell:/opt/bitnami/elasticsearch/config/hunspell"
+    ports:
+      - "9200:9200"
+    profiles:
+      - search
+      - log
+    environment:
+      - ELASTICSEARCH_PLUGINS=analysis-phonetic,analysis-icu
+
+  logstash:
+    image: bitnami/logstash:${ELK_VERSION}
+    volumes:
+      - "logstash_data:/bitnami"
+    environment:
+      - LOGSTASH_ELASTICSEARCH_HOST=es
+      - LOGSTASH_ELASTICSEARCH_PORT_NUMBER=9200
+    profiles:
+      - log
+
+  kibana:
+    image: bitnami/kibana:${ELK_VERSION}
+    ports:
+      - "5601:5601"
+    environment:
+      - KIBANA_ELASTICSEARCH_URL=${KIBANA_ELASTICSEARCH_URL}
+    profiles:
+      - search
+      - log
+
+
+volumes:
+  es_data:
+    driver: local
+  logstash_data:
+    driver: local
+  kibana_data:
+    driver: local
