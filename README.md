@@ -199,3 +199,10 @@ KIBANA_PORT_NUMBER: 5601
 APACHE_KIBANA_USERNAME: kibana
 APACHE_KIBANA_PASSWORD: bitnami
 ```
+
+## Test data
+run
+```shell
+./mock.sh
+```
+to load mock data from ```mock_data.json``` file
